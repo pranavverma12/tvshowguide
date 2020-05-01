@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_135121) do
+ActiveRecord::Schema.define(version: 2020_05_01_153606) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_channels_on_name"
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "show_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["show_id"], name: "index_favourites_on_show_id"
+    t.index ["user_id", "show_id"], name: "index_favourites_on_user_id_and_show_id", unique: true
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "shows", force: :cascade do |t|
@@ -41,5 +51,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_135121) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favourites", "shows"
+  add_foreign_key "favourites", "users"
   add_foreign_key "shows", "channels"
 end

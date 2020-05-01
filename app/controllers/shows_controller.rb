@@ -28,14 +28,10 @@ class ShowsController < ApplicationController
   def create
     @show = Show.new(show_params)
 
-    respond_to do |format|
-      if @show.save
-        format.html { redirect_to @show, notice: 'Show was successfully created.' }
-        format.json { render :show, status: :created, location: @show }
-      else
-        format.html { render :new }
-        format.json { render json: @show.errors, status: :unprocessable_entity }
-      end
+    if @show.save
+      redirect_to @show, notice: 'Show was successfully created.'
+    else
+      render :new
     end
   end
 

@@ -13,6 +13,7 @@
       <th>Name</th>
       <th>Channel</th>
       <th>Timing</th>
+      <th>Favourite</th>
     </tr>
   </thead>
 
@@ -22,6 +23,13 @@
         <td><%= link_to show.name, show %></td>
         <td><%= show.channel&.name %></td>
         <td><%= show.timing.strftime("%I:%M %p") %></td>
+        <td>
+          <% if current_user.is_favourite?(show.id) %>
+            <%= link_to 'Unlike'.html_safe, favourite_path(id: show.id),method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% else %>
+            <%= link_to 'Like'.html_safe, favourites_path(show_id: show.id), method: :post%>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
