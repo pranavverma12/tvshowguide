@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shows</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Channel</th>
+      <th>Timing</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shows.each do |show| %>
+      <tr>
+        <td><%= link_to show.name, show %></td>
+        <td><%= show.channel&.name %></td>
+        <td><%= show.timing.strftime("%I:%M %p") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Show', new_show_path %>

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :shows
   devise_for :users
 
   get 'pages/home'
 
-  root to: "pages#home"
+  root to: "shows#index"
 
   devise_scope :user do
     get "signup", to: "devise/registrations#new"
