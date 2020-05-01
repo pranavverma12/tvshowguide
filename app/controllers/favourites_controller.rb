@@ -28,6 +28,9 @@ class FavouritesController < ApplicationController
 
     respond_to do |format|
       if @favourite.save
+        user_fav_show = @favourite.show
+        
+        ShowMailer.with(show: user_fav_show, user: @favourite.user, channel_name: user_fav_show.channel.name).reminder_show.deliver_now
         format.html { redirect_to root_path, notice: 'Favourite was successfully created.' }
         format.json { render :show, status: :created, location: @favourite }
       else

@@ -61,7 +61,7 @@ tv_shows_name = [
 channel_ids = Channel.all.map(&:id)
 
 tv_shows_name.each do |show_name|
-  time = Time.at(rand(0..24).hour + rand(0..60).minutes)
+  time = Time.at(rand(0..24).hour + rand(0..60).minutes).strftime("%I:%M%p")
   show = Show.new(channel_id: channel_ids.sample, name: show_name, timing: time)
 
   next if show.save

@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>It is a reminder that your show <%= @show&.name %> is going to start in next 30 minutes!</p>
+    <p>
+    Show details<br>
+    --------------------------
+    </p>
+    <p>Timing: <%= @show&.timing.strftime("%I:%M %p") %></p>
+    <p>Channel: <%= @channel_name %></p>
+    <p>
+
+    --------------------------
+  </body>
+</html>
