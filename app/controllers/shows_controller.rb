@@ -4,13 +4,16 @@ class ShowsController < ApplicationController
   # GET /shows
   # GET /shows.json
   def index
-    @shows = Show.all
+    unless params[:name].blank?
+      @shows = Show.search_shows(params[:name])
+    else
+      @shows = Show.all
+    end
   end
 
   # GET /shows/1
   # GET /shows/1.json
-  def show
-  end
+  def show; end
 
   # GET /shows/new
   def new
@@ -18,8 +21,7 @@ class ShowsController < ApplicationController
   end
 
   # GET /shows/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /shows
   # POST /shows.json

@@ -2,6 +2,11 @@
 
 <h1>Shows</h1>
 
+<%= form_tag(shows_path, method: :get) do %>
+  TV Show/Channel <%= text_field_tag :name, params[:name] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
 <table>
   <thead>
     <tr>
